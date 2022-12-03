@@ -1,0 +1,242 @@
+<title>joseli.to - Você (provavelmente) não sabia que o Chrome DevTools tinha isso</title>
+<style>
+    html { height: 100vh; background: #4A7BE9; font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif; }
+    main { display: flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column; }
+    main > div {
+        margin-top: 1rem;
+        display: flex;
+        font-size: 2rem;
+    }
+    main > div > a {
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        color: #fff;
+        line-height: 1;;
+    }
+    main img { max-width: 80vw;}
+</style>
+<script>
+/* consoleimg v1.0 - chris johnson / @defaced */const consoleimg={load:function(e,{size:o=320,color:n="transparent"}={}){const t=new FileReader;t.addEventListener("load",function(){const e="background: url('"+t.result+"') left top no-repeat; font-size: "+o+"px; background-size: contain; background-color:"+n;console.log("%c     ",e)},!1),fetch(e).then(e=>e.blob()).then(e=>{if(0===e.type.indexOf("image")){if(e.size>8192&&navigator.userAgent.indexOf("Firefox")>0)throw new Error("Image size too big to be displayed in Firefox.");return e}throw new Error("Valid image not found.")}).then(e=>t.readAsDataURL(e)).catch(e=>console.warn(e.message))}};
+
+const slides = {};
+
+slides.state = {
+  currentSlide: 1,
+  previousSlide: -1
+};
+
+slides.setState = (newState) => {
+  slides.state = { ...slides.state, ...newState };
+};
+
+// Handling
+window.showSlide = () => {
+    console.clear();
+    consoleimg.load(`out/${slides.state.currentSlide.toString().padStart(2, '0')}.jpg`, {size: window.slideSize});
+}
+
+window.nextSlide = () => {
+    const previousSlide = slides.state.currentSlide;
+    const currentSlide = slides.state.currentSlide + 1;
+
+    slides.setState({
+        currentSlide: currentSlide,
+        previousSlide: previousSlide
+    });
+
+    window.showSlide();
+}
+
+
+window.previousSlide = () => {
+    const previousSlide = slides.state.currentSlide - 2;
+    const currentSlide = slides.state.currentSlide - 1;
+
+    slides.setState({
+        currentSlide: currentSlide,
+        previousSlide: previousSlide
+    });
+
+    window.showSlide();
+}
+
+
+
+window.setSlide = (slide) => {
+
+    slides.setState({
+        currentSlide: slide,
+        previousSlide: (slide - 1)
+    });
+
+    window.showSlide();
+}
+
+
+window.setSlideSize = (size) => slides.setState({size: size});
+
+
+// Helpers
+window.log_s = () => console.log("%cCuidado!", "font-size: 4rem;font-weight:700;color:red;text-transform: uppercase;");
+
+window.wh_0 = () => {
+
+    const width = Math.floor(Math.random() * 999) + 1;
+    const height = Math.floor(Math.random() * 999) + 1;
+
+    console.log(width);
+    console.log(height);
+
+    ((++window.counter) < 50) ?  window.wh_0() : window.counter = 0;
+}
+
+
+window.wh_1 = () => {
+
+    const width = Math.floor(Math.random() * 999) + 1;
+    const height = Math.floor(Math.random() * 999) + 1;
+
+    console.log({width});
+    console.log({height});
+
+    ((++window.counter) < 50) ?  window.wh_1() : window.counter = 0;
+}
+
+window.wh_2 = () => {
+
+    const width = Math.floor(Math.random() * 999) + 1;
+    const height = Math.floor(Math.random() * 999) + 1;
+
+    console.log({width, height});
+
+    ((++window.counter) < 50) ?  window.wh_2() : window.counter = 0;
+}
+
+window.g_1 = () => {
+    console.group("Passengers: Heart of Gold");
+    console.log('Zaphod');
+    console.log('Trillian');
+    console.log('Ford');
+    console.log('Arthur');
+    console.log('Marvin');
+    console.groupCollapsed("Hidden");
+    console.log('(Frankie & Benjy)');
+    console.groupEnd("Hidden");
+    console.groupEnd("Passengers: Heart of Gold");
+}
+
+window.g_2 = () => {
+    let technologies = {
+        "Standards": ["HTML", "CSS", "SVG", "ECMAScript"],
+        "Others": ["jQuery", "Markdown", "Textile", "Sass", "Pug"]
+    }
+
+    for (tech in technologies) {
+        console.groupCollapsed(tech);
+        technologies[tech].forEach(t => console.log(t));
+        console.groupEnd(tech);
+    }
+}
+
+window.mo_0 = () => {
+
+    const a = Math.floor(Math.random() * 999) + 1;
+    const b = Math.floor(Math.random() * 999) + 1;
+
+    console.log(window.sum(a,b));
+
+    ((++window.counter) < 50) ?  window.mo_0() : window.counter = 0;
+}
+
+window.user = "";
+
+window.greet = () => {
+  console.count(window.user);
+  return `oi ${window.user}`;
+}
+
+window.gr_0 = () => {
+    const aux = Math.floor(Math.random() * 10) + 1;
+
+    (aux < 4) ? window.user = "akira" : window.user = "glauber";
+
+    window.greet();
+
+    ((++window.counter) < 50) ?  window.gr_0() : window.counter = 0;
+}
+
+window.ct_0 = () => {
+    console.time();
+
+    setTimeout(() => {
+    console.timeEnd();
+    }, 5000);
+};
+
+window.ct_1 = () => {
+    console.time();
+
+    setTimeout(() => {
+    console.timeEnd();
+    }, 5000);
+
+    setTimeout(() => {
+    console.timeLog()
+    }, 2000);
+};
+
+window.tr_0 = () => {
+    function essa() {
+        aquela();
+    }
+
+    function aquela() {
+        outra();
+    }
+
+    function outra() {
+        console.trace();
+    }
+
+    essa()
+}
+
+window.as_0 = () => {
+    const errorMsg = "# não é impar!";
+
+    for (let number = 2; number <= 13; number++) {
+        console.log(`número ${number}`);
+        console.assert(number % 2 != 0, '%o', { number, errorMsg });
+    }
+}
+
+
+// Aliases
+window.n = window.nextSlide;
+window.p = window.previousSlide;
+window.l = window.previousSlide;
+window.s = window.showSlide;
+window.sl = window.setSlide;
+
+// Constants
+window.counter = 0;
+window.slideSize = 480;
+
+// Start
+window.showSlide();
+
+// rm -rf out/*.* && gs -dNOPAUSE -sDEVICE=jpeg -r200 -dJPEGQ=100 -sOutputFile=out/%02d.jpg "VPNSQOCDTI.pdf" -dBATCH
+</script>
+<main>
+    <a href="https://joseli.to" target="_blank"><img src="logo.png" /></a>
+    <div>
+        <a href="#" onclick="p()">←</a>
+        <a href="#" onclick="n()">→</a>
+        <a href="https://speakerdeck.com/breakzplatform/voce-provavelmente-nao-sabia-que-o-chrome-devtools-tinha-isso" target="_blank">⬇</a>
+        <a href="https://joseli.to" target="_blank">🌐</a>
+        <a href="#">🍴</a>
+        <a href="#">🐦</a>
+        <a href="#">🐘</a>
+    </div>
+</main>

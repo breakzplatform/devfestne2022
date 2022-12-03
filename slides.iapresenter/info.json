@@ -1,0 +1,12 @@
+{
+  "net.ia.presenter" : {
+    "logo" : "\/assets\/JOSELI.TO.png",
+    "appearance" : "light",
+    "lightbackgroundcolor" : "Transparent",
+    "headertrailing" : "logo"
+  },
+  "creatorIdentifier" : "net.ia.presenter",
+  "type" : "net.daringfireball.markdown",
+  "version" : 2,
+  "transient" : false
+}
